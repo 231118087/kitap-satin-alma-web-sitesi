@@ -1,0 +1,215 @@
+﻿@page
+@model kütüphane.Pages.IletisimModel
+@{
+    ViewData["Title"] = "İletişim";
+    Layout = "_Layout";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .header p {
+        font-size: 16px;
+        color: #666;
+    }
+
+    .form-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .form-card {
+        flex: 1;
+        min-width: 350px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .form-card h2 {
+        font-size: 24px;
+        color: #b29e1e;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .form-control:focus {
+        border-color: #b29e1e;
+        outline: none;
+    }
+
+    button {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #b29e1e;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #b29e1e;
+    }
+
+    .info-card {
+        flex: 1;
+        min-width: 350px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    .info-card h2 {
+        font-size: 24px;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    .info-card p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #555;
+    }
+
+    .info-card a {
+        color: #b29e1e;
+        text-decoration: none;
+    }
+
+    .info-card a:hover {
+        text-decoration: underline;
+    }
+
+    .map-container {
+        margin-top: 30px;
+        width: 100%;
+        max-width: 1200px;
+        text-align: center;
+    }
+
+    iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container">
+    <div class="header">
+        <h1>İLETİŞİM</h1>
+        <p>Her türlü soru, öneri ve şikayetleriniz için bize ulaşabilirsiniz.</p>
+    </div>
+
+    <div class="form-container">
+        <!-- İletişim Formu -->
+        <div class="form-card">
+            <h2>Bize Ulaşın</h2>
+            <form id="contactForm" method="post">
+                <label for="name">Ad</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+
+                <label for="surname">Soyad</label>
+                <input type="text" class="form-control" id="surname" name="surname" required>
+
+                <label for="email">E-Posta Adresi</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+
+                <label for="subject">Konu</label>
+                <select class="form-control" id="subject" name="subject" required>
+                    <option value="">Seçiniz</option>
+                    <option value="siparis-durumu">Sipariş Durumu</option>
+                    <option value="iade-degisim">İade ve Değişim</option>
+                    <option value="urun-bilgisi">Ürün Bilgisi</option>
+                    <option value="odeme-sorunlari">Ödeme Sorunları</option>
+                    <option value="teknik-destek">Teknik Destek</option>
+                    <option value="oneri-geri-bildirim">Öneri ve Geri Bildirim</option>
+                </select>
+
+                <label for="message">Mesajınız</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Gönder</button>
+            </form>
+        </div>
+
+        <!-- İletişim Bilgileri -->
+        <div class="info-card">
+            <h2>İletişim Bilgileri</h2>
+            <p><strong>Adres:</strong> Postane, Eflatun Sk. No:8, 34940 Tuzla/İstanbul</p>
+            <p><strong>Email:</strong> cirillakitap@hotmail.com</p>
+            <p><strong>Telefon:</strong> 0212 202 3636</p>
+            <p><strong>Web:</strong> <a href="https://www.cirillakitap.com" target="_blank">www.cirillakitap.com</a></p>
+            <p><strong>Goodreads:</strong> <a href="https://www.goodreads.com" target="_blank">www.goodreads.com</a></p>
+        </div>
+    </div>
+
+    <!-- Google Maps -->
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.1166739321073!2d29.303517615852805!3d40.81426477932098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b52aa246e52d37%3A0x9be9f0e8690ed89b!2sPostane%2C%20Eflatun%20Sk.%20No%3A8%2C%2034940%20Tuzla%2F%C4%B0stanbul!5e0!3m2!1str!2str!4v1684058301289!5m2!1str!2str" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Mesajınız alındı. Teşekkür ederiz!");
+    });
+</script>

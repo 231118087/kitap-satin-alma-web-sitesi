@@ -1,0 +1,157 @@
+﻿@page
+@model kütüphane.Pages.RegisterModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 15px;
+            border: 2px solid #b29e1e;
+        }
+
+        form div {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 0;
+            display: inline-block;
+            border: 1px solid #b29e1e;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 20px;
+            margin: 8px 0;
+            background-color: #b29e1e;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #b29e1e;
+            opacity: 0.8;
+        }
+
+        .error-message, .success-message {
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        /* Yeni Eklenen CSS: Cinsiyet Butonları */
+        .gender-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .gender-options label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-options input[type="radio"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            <h2>Kayıt Ol</h2>
+            <div>
+                <label for="adSoyad">Ad Soyad:</label>
+                <input type="text" id="adSoyad" name="adSoyad" asp-for="AdSoyad" required>
+            </div>
+            <!-- Cinsiyet Radio Button -->
+            <div>
+                <label>Cinsiyet:</label>
+                <div class="gender-options">
+                    <label>
+                        <input type="radio" id="male" name="gender" value="male" required> Erkek
+                    </label>
+                    <label>
+                        <input type="radio" id="female" name="gender" value="female"> Kadın
+                    </label>
+                    <label>
+                        <input type="radio" id="other" name="gender" value="other"> Diğer
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" asp-for="Email" required>
+            </div>
+            <div>
+                <label for="telefon">Telefon:</label>
+                <input type="tel" id="telefon" name="telefon" asp-for="Telefon" required>
+            </div>
+            <div>
+                <label for="sifre">Şifre:</label>
+                <input type="password" id="sifre" name="sifre" asp-for="Sifre" required>
+            </div>
+            <!-- Şifreyi Hatırla Checkbox -->
+            <div>
+                <input type="checkbox" id="rememberPassword" name="rememberPassword">
+                <label for="rememberPassword">Şifreyi Hatırla</label>
+            </div>
+            <div>
+                <button type="submit">Kayıt Ol</button>
+            </div>
+        </form>
+
+        <div class="success-message">
+            @Model.BasariMesaji
+        </div>
+        <div class="error-message">
+            @Model.HataMesaji
+        </div>
+    </div>
+</body>
+</html>

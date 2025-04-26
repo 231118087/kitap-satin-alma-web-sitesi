@@ -1,0 +1,49 @@
+﻿@page
+@model kütüphane.Pages.CartModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>Sepetiniz</h2>
+
+@if (Model.CartItems != null && Model.CartItems.Count > 0)
+{
+    <p>Sepetinizde @(Model.CartItems.Sum(item => item.Quantity)) ürün var.</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Resim</th>
+                <th>Başlık</th>
+                <th>Yazar</th>
+                <th>Fiyat</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>
+                        <img src="~/images/@item.Book.ImageFileName" alt="@item.Book.Title" width="50" />
+                    </td>
+                    <td>@item.Book.Title</td>
+                    <td>@item.Book.Author</td>
+                    <td>@item.Book.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Book.Price * item.Quantity).ToString("C")</td>
+                    <td>
+                        <form method="post" asp-page-handler="RemoveFromCart" asp-route-bookId="@item.Book.Id">
+                            <button type="submit" class="btn btn-danger">Kaldır</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Sepetiniz boş.</p>
+}
